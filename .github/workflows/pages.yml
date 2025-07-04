@@ -1,0 +1,18 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches: [ "main" ] # 或 master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-pages-artifact@v2
+        with:
+          path: 'public/' # 关键！明确指定发布目录
+      - uses: actions/deploy-pages@v2
